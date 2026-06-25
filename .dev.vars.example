@@ -1,0 +1,19 @@
+# 本地开发用密钥示例。复制为 .dev.vars（已被 .gitignore 忽略）后填入真实值。
+# 生产环境改用 `wrangler secret put <NAME>` 注入，切勿提交真实密钥。
+
+# ── EPO OPS（client-credentials）──────────────────────────────────────────
+OPS_CONSUMER_KEY=your-ops-consumer-key
+OPS_CONSUMER_SECRET=your-ops-consumer-secret
+
+# ── OAuth provider（对 Claude 暴露的 OAuth 2.1）──────────────────────────
+# openssl rand -hex 32
+COOKIE_ENCRYPTION_KEY=your-32-byte-hex-key
+
+# ── 上游身份：Cloudflare Access for SaaS (OIDC) ──────────────────────────
+ACCESS_CLIENT_ID=your-access-saas-client-id
+ACCESS_CLIENT_SECRET=your-access-saas-client-secret
+# 取自 Access SaaS OIDC 应用详情（属于你的 team 域 <team>.cloudflareaccess.com）
+ACCESS_AUTHORIZATION_URL=https://<team>.cloudflareaccess.com/cdn-cgi/access/sso/oidc/<app-id>/authorization
+ACCESS_TOKEN_URL=https://<team>.cloudflareaccess.com/cdn-cgi/access/sso/oidc/<app-id>/token
+# 可选，用于将来校验 id_token 签名
+ACCESS_JWKS_URL=https://<team>.cloudflareaccess.com/cdn-cgi/access/sso/oidc/<app-id>/jwks

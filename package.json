@@ -1,0 +1,24 @@
+{
+  "name": "patent-mcp-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Remote MCP server for patent search via EPO OPS, deployed on Cloudflare Workers.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cloudflare/workers-oauth-provider": "^0.8.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "agents": "^0.16.2",
+    "fast-xml-parser": "^5.9.3",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260624.1",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.104.0"
+  }
+}

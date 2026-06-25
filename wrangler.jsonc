@@ -1,0 +1,25 @@
+{
+  // Cloudflare Workers 配置。密钥一律用 `wrangler secret put` 注入，绝不写入此文件。
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "patent-mcp-server",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-09-01",
+  // fast-xml-parser 在 Workers 上需要 nodejs_compat
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  "kv_namespaces": [
+    {
+      // 部署时用 `wrangler kv namespace create OAUTH_KV` 创建后，把返回的 id 填到这里。
+      // 该 namespace 同时承担：OAuth 授权态存储 + OPS access token 缓存（键 ops_token）。
+      "binding": "OAUTH_KV",
+      "id": "<your-kv-namespace-id>"
+    }
+  ]
+
+  // ── 扩展位（Phase 3，本次不实现）────────────────────────────────────────
+  // 接入 Google Patents（SerpApi/Apify）时，新增 secret：
+  //   wrangler secret put SERPAPI_KEY
+  // 无需在此声明明文；provider 层 (src/provider.ts) 已预留实现位。
+}
